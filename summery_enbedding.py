@@ -5,6 +5,9 @@ import argparse
 from dotenv import load_dotenv
 import os
 import tqdm
+import numpy as np
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
 
 
 class Embedding:
