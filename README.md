@@ -10,19 +10,19 @@
 ## quantitive result
 1. classification sse plot
     <div style="display: flex; flex-wrap: wrap;">
-        <div style="flex: 1; margin: 10px;">
+        <div style="flex: 1; margin: 10px; max-width: 45%;">
             <h3>action_sse</h3>
             <img src="src/elbow_fig/action_sse.png" alt="action_sse" style="width: 100%;">
         </div>
-        <div style="flex: 1; margin: 10px;">
+        <div style="flex: 1; margin: 10px; max-width: 45%;">
             <h3>attitude_sse</h3>
             <img src="src/elbow_fig/attitude_sse.png" alt="attitude_sse" style="width: 100%;">
         </div>
-        <div style="flex: 1; margin: 10px;">
+        <div style="flex: 1; margin: 10px; max-width: 45%;">
             <h3>information_sse</h3>
             <img src="src/elbow_fig/information_sse.png" alt="information_sse" style="width: 100%;">
         </div>
-        <div style="flex: 1; margin: 10px;">
+        <div style="flex: 1; margin: 10px; max-width: 45%;">
             <h3>recognition_sse</h3>
             <img src="src/elbow_fig/recognition_sse.png" alt="recognition_sse" style="width: 100%;">
         </div>
