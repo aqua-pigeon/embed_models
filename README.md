@@ -1,5 +1,33 @@
 # jp_bert_embedding
 
+## overview
+1. model architecture
+    ![model_fig](src/interverwmodel-ver2.png)
+    - LLM model: gpt-4o
+    - Database: MongoDB
+    - Encoder model: [ScentenceTransformer](https://sbert.net)
+
+## quantitive result
+1. classification sse plot
+    <div style="display: flex; flex-wrap: wrap;">
+        <div style="flex: 1; margin: 10px;">
+            <h3>action_sse</h3>
+            <img src="src/elbow_fig/action_sse.png" alt="action_sse" style="width: 100%;">
+        </div>
+        <div style="flex: 1; margin: 10px;">
+            <h3>attitude_sse</h3>
+            <img src="src/elbow_fig/attitude_sse.png" alt="attitude_sse" style="width: 100%;">
+        </div>
+        <div style="flex: 1; margin: 10px;">
+            <h3>information_sse</h3>
+            <img src="src/elbow_fig/information_sse.png" alt="information_sse" style="width: 100%;">
+        </div>
+        <div style="flex: 1; margin: 10px;">
+            <h3>recognition_sse</h3>
+            <img src="src/elbow_fig/recognition_sse.png" alt="recognition_sse" style="width: 100%;">
+        </div>
+    </div>
+
 ## setup
 ```sh
 git clone git@github.com:aqua-pigeon/embed_models.git
@@ -19,80 +47,4 @@ pip install -r requirements.txt
 
 2. download interview history  
 place interview history at `data/interview_history.csv`
-    <details>
-    <summary>sample data</summary>
-    ```json
-    {
-        "len": 1,
-        "data": [
-            {
-                "session_id": "3f5aafa7-0887-48bc-ac6d-01aa68e739be",
-                "line_id": "U4b9c5834b9613588cafdfc15344a42d2",
-                "data": [
-                    {
-                        "role": "assistant",
-                        "content": "最近あなたが責任感を持って行なったタスクについて具体的に教えてもらえますか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "バイトの業務"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "それは興味深いですね。バイト中に特に意識していることは何ですか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "効率よく物事を進めること"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "それは素晴らしいですね！効率よく進めるために、どんな情報や経験が特に役立っていると感じますか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "仕事内容について予習しています！"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "そうなんですね、すごいです！ドリンク作成で特に大切だと感じるステップはありますか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "私はドリンク作成はしていません！"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "それは興味深いですね。アルバイトで効率よく進めるために、特に心がけていることはありますか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "事前に仕事内容を予習してからバイト先に出勤しました！"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "それは素晴らしいですね！予習した中で、特に役立った情報は何ですか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "おにぎり屋で働いていますが、おにぎりとおかずの詰め方が書かれたマニュアルが役に立ちました。"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "そのマニュアル、役立っているんですね。具体的には、どんなふうに活用していますか？"
-                    },
-                    {
-                        "role": "user",
-                        "content": "作り始める前にマニュアルを見るようにしています"
-                    },
-                    {
-                        "role": "assistant",
-                        "content": "そうなんですね、マニュアルを使っているんですね。作業中に特に大事にしているポイントはありますか？"
-                    }
-                ],
-                "end": true
-            },
-        ]
-    }
-    ```
-    </details>
+    - [src/sample_messages.json](src/sample_messages.json)
