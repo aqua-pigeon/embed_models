@@ -8,7 +8,7 @@
     - Encoder model: [ScentenceTransformer](https://sbert.net)
     - Classificater: k-means
 
-## quantitive result
+## qualitative result
 1. classification sse plot
 <div style="display: flex; flex-wrap: wrap;">
     <div style="flex: 1; margin: 10px; max-width: 50%;">
