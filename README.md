@@ -6,6 +6,7 @@
     - LLM model: gpt-4o
     - Database: MongoDB
     - Encoder model: [ScentenceTransformer](https://sbert.net)
+    - Classificater: k-means
 
 ## quantitive result
 1. classification sse plot
