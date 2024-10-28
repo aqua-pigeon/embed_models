@@ -4,6 +4,7 @@ import argparse
 from dotenv import load_dotenv
 import os
 import tqdm
+import requests
 
 
 # LLMを用いて要約を生成する関数
@@ -27,6 +28,22 @@ def generate_summary_using_llm(interview_data, model_name: str, instruction: str
     return summary
 
 
+def translate_text(from_lang, to_lang, text):
+    url = "https://script.google.com/macros/s/AKfycbwS07PrEtK3zvoCP9W2gtWuxkW-VFIs3d4JM0K3kA4oQv0IVn_vXm2aQ7xsjpvmrI7jWQ/exec"  # ここにウェブアプリのデプロイURLを入力
+    params = {"from": from_lang, "to": to_lang, "text": text}
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        if "translatedText" in data:
+            return data["translatedText"]
+        else:
+            return f"Error: {data.get('error', 'Unknown error')}"
+    else:
+        return f"HTTP Error: {response.status_code}"
+
+
 def arg_parse():
     parser = argparse.ArgumentParser(description="Embedding")
     parser.add_argument(
@@ -42,10 +59,10 @@ def arg_parse():
         "--instruction",
         type=str,
         default="""
-    インタビューデータから、{action}{recognition}{infomation}{attitude}の四つの内容を要約して抽出してください。
+    インタビューデータから、{action}{recognition}{infomation}{attitude}の四つの内容を英語で要約して抽出してください。
     ただし、actionは回答者の現在のタスクについての行動内容について、recognitionは認知タスク分析において重要な認知プロセスに関わる判断や思考、気付き、手がかり、目標などであり、
     infomationは現在のタスクにあたって活用している情報や経験についてであり、attitudeは仕事に対する取り組み姿勢や信念です。これらの四つの項目に分類される内容は複数あって構いません。
-    動詞は名詞形にしてください。出力形式は次に示すjsonに従うこと．
+    名詞形で、言語は**英語**でお願いします。出力形式は次に示すjsonに従うこと．
     { 
         "action": [
             ""
@@ -120,6 +137,8 @@ if __name__ == "__main__":
 
             # 要らない文字列を削除, ```json, ```を削除
             summary = summary.replace("```json", "").replace("```", "")
+            #結果を翻訳
+            # summary = translate_text("en", "ja", summary)
 
             # 結果を確認
             # print(f"要約結果 (Session ID: {session_id}):\n{summary}")
