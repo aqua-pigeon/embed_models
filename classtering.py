@@ -128,7 +128,7 @@ def generate_abstract_concept(texts, model_name="gpt-4o"):
 
     while True:
         prompt = (
-            f"次の内容は同じクラスターに属する関連する要素です。これらを上位概念のラベルで表すとどのような内容になりますか？{texts}.出力は次の形式に従うこと。"
+            f"次の内容は同じクラスターに属する関連する要素です。これらを上位概念のラベルで表すとどのような内容になりますか？{texts}.出力は英語で、次の形式に従うこと。"
             + """{"result": ""}"""
         )
         response = openai.ChatCompletion.create(
